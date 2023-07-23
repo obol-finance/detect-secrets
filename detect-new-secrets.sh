@@ -31,7 +31,7 @@ scan_new_secrets() {
 
     detect-secrets scan $detect_secret_args --baseline "$BASELINE_FILE"
     detect-secrets audit "$BASELINE_FILE" --report --json > "$all_secrets_file"
-    jq 'map(select(.category == "UNVERIFIED"))' "$all_secrets_file" > "$new_secrets_file"
+    jq '.results | map(select(.category == "UNVERIFIED"))' "$all_secrets_file" > "$new_secrets_file"
 }
 
 advice_if_none_are_secret_short() {
