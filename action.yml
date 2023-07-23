@@ -9,7 +9,7 @@ inputs:
   detect_secrets_version:
     description: 'The version of Yelp/detect-secrets to use'
     required: false
-    default: '1.3.0'
+    default: '1.4.0'
   detect_secret_additional_args:
     description: 'Extra arguments to pass to the detect-secret binary'
     required: false
@@ -36,7 +36,7 @@ runs:
         python-version: ${{ inputs.python_version }}
     - name: Install detect-secrets
       shell: bash
-      run: pip install detect-secrets[gibberish]=="$DETECT_SECRET_VERSION"
+      run: pip install detect-secrets=="$DETECT_SECRET_VERSION"
       env: 
         DETECT_SECRET_VERSION: ${{ inputs.detect_secrets_version }}
     - name: Check for secrets
